@@ -26,7 +26,12 @@ var sum = function (array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function (array) {};
+var arraySum = function (array, sum = 0) {
+};
+
+
+
+
 
 // 4. Check if a number is even.
 var isEven = function (n) {
@@ -252,23 +257,29 @@ var replaceKeysInObj = function (obj, key, newKey) {};
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
 var fibonacci = function (n, arr = [0, 1], i = 2) {
-    if (arr.length === n + 2) {
+    if (n < 1){
+        return null;
+    }
+    if (arr.length === n + 1) {
         return arr;
     }
     return fibonacci(n, arr.concat(arr[i - 2] + arr[i - 1]), ++i);
 };
 
- // 25. Return the Fibonacci number located at index n of the Fibonacci sequence.
- // [0,1,1,2,3,5,8,13,21]
- // nthFibo(5); // 5
- // nthFibo(7); // 13
- // nthFibo(3); // 2
- var nthFibo = function (n, a = 0, b = 1) {
-     if (n === 0) {
-         return a;
-     }
-     return nthFibo(n - 1, a + b, a);
- };
+// 25. Return the Fibonacci number located at index n of the Fibonacci sequence.
+// [0,1,1,2,3,5,8,13,21]
+// nthFibo(5); // 5
+// nthFibo(7); // 13
+// nthFibo(3); // 2
+var nthFibo = function (n, a = 0, b = 1) {
+    if (n < 0){
+        return null;
+    }
+    if (n === 0) {
+        return a;
+    }
+    return nthFibo(n - 1, a + b, a);
+};
 
  // 26. Given an array of words, return a new array containing each word capitalized.
  // var words = ['i', 'am', 'learning', 'recursion'];
