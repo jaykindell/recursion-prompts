@@ -113,7 +113,7 @@ var reverse = function (string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function (string) {
-    string = string.toLowerCase();
+    string = string.replace(/\s/g, '').toLowerCase();
 
     if (string.length <= 1) {
         return true;
@@ -133,60 +133,62 @@ var palindrome = function (string) {
 var modulo = function (x, y) {};
 
  // 12. Write a function that multiplies two numbers without using the * operator  or
- // JavaScript's Math object.
- var multiply = function (x, y) {
-     if (y === 0) {
-         return 0;
-     }
-     if (y > 0) {
-         return x + multiply(x, y - 1);
-     }
-     return -(multiply(x, -y));
- };
+// JavaScript's Math object.
+var multiply = function (x, y) {
+    if (y === 0) {
+        return 0;
+    }
+    if (y > 0) {
+        return x + multiply(x, y - 1);
+    }
+    return -(multiply(x, -y));
+};
 
 
- // 13. Write a function that divides two numbers without using the / operator  or
- // JavaScript's Math object.
- var divide = function (x, y) {};
+// 13. Write a function that divides two numbers without using the / operator  or
+// JavaScript's Math object.
+var divide = function (x, y) {};
 
- // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
- // integers is the greatest integer that divides both x and y with no remainder.
- // Example:  gcd(4,36);  // 4
- // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
- // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
- var gcd = function (x, y) {};
+// 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
+// integers is the greatest integer that divides both x and y with no remainder.
+// Example:  gcd(4,36);  // 4
+// http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
+// https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
+var gcd = function (x, y) {};
 
- // 15. Write a function that compares each character of two strings and returns true if
- // both are identical.
- // compareStr('house', 'houses') // false
- // compareStr('', '') // true
- // compareStr('tomato', 'tomato') // true
- var compareStr = function (str1, str2) {
-     if (str1.charAt(0) !== str2.charAt(0)) {
-         //console.log(str1, str2);  
-         return false;
-     }
+// 15. Write a function that compares each character of two strings and returns true if
+// both are identical.
+// compareStr('house', 'houses') // false
+// compareStr('', '') // true
+// compareStr('tomato', 'tomato') // true
+var compareStr = function (str1, str2) {
+    if (str1.charAt(0) !== str2.charAt(0)) {
+        //console.log(str1, str2);  
+        return false;
+    }
 
-     if (str1 === '' && str2 === '') {
-         return true;
-     }
+    if (str1 === '' && str2 === '') {
+        return true;
+    }
 
-     if (str1.charAt(0) === str2.charAt(0)) {
-         //console.log(str1, str2);
-         return compareStr(str1.slice(1), str2.slice(1));
-     }
- };
+    if (str1.charAt(0) === str2.charAt(0)) {
+        //console.log(str1, str2);
+        return compareStr(str1.slice(1), str2.slice(1));
+    }
+};
 
- // 16. Write a function that accepts a string and creates an array where each letter
- // occupies an index of the array.
- var arr = [];
- var createArray = function (str) {
-     if (str.length === 0) {
-         return arr;
-     }
-     arr.push(str.charAt(0));
-     return createArray(str.slice(1));
- }
+// 16. Write a function that accepts a string and creates an array where each letter
+// occupies an index of the array.
+var arr = [];
+var createArray = function (str) {
+    if (str.length === arr.length) {
+        return arr;
+    }
+
+    arr.push(str.charAt(0));
+    console.log(arr);
+    return createArray(str.slice(1));
+};
 
  // 17. Reverse the order of an array
  var reverseArr = function (array, result = [], i = array.length - 1) {
