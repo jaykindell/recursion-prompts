@@ -27,11 +27,16 @@ var sum = function (array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function (array, sum = 0) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === Math.round(array[i])) {
+            sum += array[i];
+        }
+        if (Array.isArray(array[i])) {
+            sum += arraySum(array[i]);
+        }
+    }
+    return sum;
 };
-
-
-
-
 
 // 4. Check if a number is even.
 var isEven = function (n) {
@@ -135,7 +140,15 @@ var palindrome = function (string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function (x, y) {};
+var modulo = function (x, y) {
+    if(x === 0 && y === 0){
+        return 0
+    }
+    if(x <= y){
+        return x;
+    }
+    return modulo(x - y, y);
+};
 
  // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
@@ -159,7 +172,16 @@ var divide = function (x, y) {};
 // Example:  gcd(4,36);  // 4
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
-var gcd = function (x, y) {};
+var gcd = function (x, y) {
+    if(x < 0 || y < 0){
+        return null;
+    }
+    if (!y) {
+        return x;
+    }
+    return gcd(y, x % y);
+};
+
 
 // 15. Write a function that compares each character of two strings and returns true if
 // both are identical.
