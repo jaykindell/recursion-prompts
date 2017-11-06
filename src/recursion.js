@@ -179,86 +179,84 @@ var compareStr = function (str1, str2) {
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var arr = [];
-var createArray = function (str) {
-    if (str.length === arr.length) {
+var createArray = function (str, arr = []) {
+    if (str.length === 0) {
         return arr;
     }
-
     arr.push(str.charAt(0));
-    console.log(arr);
-    return createArray(str.slice(1));
+    return createArray(str.slice(1), arr);
 };
 
- // 17. Reverse the order of an array
- var reverseArr = function (array, result = [], i = array.length - 1) {
-     if (i === -1) {
-         return result;
-     }
-     return reverseArr(array, result.concat(array[i]), --i);
- };
+// 17. Reverse the order of an array
+var reverseArr = function (array, result = [], i = array.length - 1) {
+    if (i === -1) {
+        return result;
+    }
+    return reverseArr(array, result.concat(array[i]), --i);
+};
 
 
 
- // 18. Create a new array with a given value and length.
- // buildList(0,5) // [0,0,0,0,0]
- // buildList(7,3) // [7,7,7]
- var buildList = function (value, length, result = [], i = 0) {
-     if (i === length) {
-         return result;
-     }
-     return buildList(value, length, result.concat(value), ++i);
- }
+// 18. Create a new array with a given value and length.
+// buildList(0,5) // [0,0,0,0,0]
+// buildList(7,3) // [7,7,7]
+var buildList = function (value, length, result = [], i = 0) {
+    if (i === length) {
+        return result;
+    }
+    result.push(value);
+    return buildList(value, length, result, ++i);
+}
 
- // 19. Count the occurence of a value inside a list.
- // countOccurrence([2,7,4,4,1,4], 4) // 3
- // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
- var countOccurence = function (array, value, tally = 0, i = 0) {
-     if (i === array.length) {
-         return tally;
-     }
-     if (array[i] === value) {
-         tally++;
-     }
-     return countOccurence(array, value, tally, ++i);
- };
+// 19. Count the occurence of a value inside a list.
+// countOccurrence([2,7,4,4,1,4], 4) // 3
+// countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
+var countOccurence = function (array, value, tally = 0, i = 0) {
+    if (i === array.length) {
+        return tally;
+    }
+    if (array[i] === value) {
+        tally++;
+    }
+    return countOccurence(array, value, tally, ++i);
+};
 
- // 20. Write a recursive version of map.
- // rMap([1,2,3], timesTwo); // [2,4,6]
- var rMap = function (array, callback, result = [], i = 0) {
-     if (i === array.length) {
-         return result;
-     }
-     return rMap(array, callback, result.concat(callback(array[i])), ++i);
- };
+// 20. Write a recursive version of map.
+// rMap([1,2,3], timesTwo); // [2,4,6]
+var rMap = function (array, callback, result = [], i = 0) {
+    if (i === array.length) {
+        return result;
+    }
+    return rMap(array, callback, result.concat(callback(array[i])), ++i);
+};
 
- // 21. Write a function that counts the number of times a key occurs in an object.
- // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
- // countKeysInObj(testobj, 'r') // 1
- // countKeysInObj(testobj, 'e') // 2
- var countKeysInObj = function (obj, key) {};
+// 21. Write a function that counts the number of times a key occurs in an object.
+// var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+// countKeysInObj(testobj, 'r') // 1
+// countKeysInObj(testobj, 'e') // 2
+var countKeysInObj = function (obj, key) {};
 
- // 22. Write a function that counts the number of times a value occurs in an object.
- // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
- // countValuesInObj(testobj, 'r') // 2
- // countValuesInObj(testobj, 'e') // 1
- var countValuesInObj = function (obj, value) {};
+// 22. Write a function that counts the number of times a value occurs in an object.
+// var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+// countValuesInObj(testobj, 'r') // 2
+// countValuesInObj(testobj, 'e') // 1
+var countValuesInObj = function (obj, value) {};
 
- // 23. Find all keys in an object (and nested objects) by a provided name and rename
- // them to a provided new name while preserving the value stored at that key.
- var replaceKeysInObj = function (obj, key, newKey) {};
+// 23. Find all keys in an object (and nested objects) by a provided name and rename
+// them to a provided new name while preserving the value stored at that key.
+var replaceKeysInObj = function (obj, key, newKey) {};
 
- // 24. Get the first n Fibonacci numbers.  In the Fibonacci Sequence, each subsequent
- // number is the sum of the previous two.
- // Example:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
- // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
- // Note:  The 0 is not counted.
- var fibonacci = function (n, arr = [0, 1], i = 2) {
-     if (arr.length === n + 2) {
-         return arr;
-     }
-     return fibonacci(n, arr.concat(arr[i - 2] + arr[i - 1]), ++i);
- };
+// 24. Get the first n Fibonacci numbers.  In the Fibonacci Sequence, each subsequent
+// number is the sum of the previous two.
+// Example:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
+// fibonacci(5);  // [0, 1, 1, 2, 3, 5]
+// Note:  The 0 is not counted.
+var fibonacci = function (n, arr = [0, 1], i = 2) {
+    if (arr.length === n + 2) {
+        return arr;
+    }
+    return fibonacci(n, arr.concat(arr[i - 2] + arr[i - 1]), ++i);
+};
 
  // 25. Return the Fibonacci number located at index n of the Fibonacci sequence.
  // [0,1,1,2,3,5,8,13,21]
