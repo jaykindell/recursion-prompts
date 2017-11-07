@@ -193,9 +193,7 @@ var divide = function (x, y, count = 0) {
         return count;
     }
     if (x >= y){
-        console.log(x, y);
         count++;
-        console.log(count);
         x = x - y;
         return divide(x, y, count);
     }
@@ -413,22 +411,23 @@ var capitalizeFirst = function (array, result = [], i = 0) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function (obj) {
-    
-};
-/*
-var count = 0;
-    for(var prop in obj){
-        if(prop === key){
-        count++;
-        // console.log(key, count);
+    var sum = 0;
+    for(var key in obj){
+        if (typeof obj[key] === 'number'){
+            let num = obj[key];
+            if(num % 2 === 0){    
+            sum += num;
+            console.log('sum is ' + sum);
+            }
         }
-        if(typeof obj[prop] === 'object'){
-        // console.log(key, typeof(obj[prop]));// all cool here
-            count += countKeysInObj(obj[prop], key);
+        if (typeof obj[key] === 'object'){
+          sum +=  nestedEvenSum(obj[key]);
         }
     }
-    return count;
-*/
+    //console.log(sum);
+    return sum;
+};
+
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function (arrays) {
