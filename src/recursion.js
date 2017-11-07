@@ -183,7 +183,24 @@ var multiply = function (x, y) {
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
 var divide = function (x, y, count = 0) {
+    if(y === 0){
+        return NaN;
+    }
+    if(x === 0){
+        return count;
+    }
+    if(x < 0 || y < 0){
+        return count;
+    }
+    if (x >= y){
+        console.log(x, y);
+        count++;
+        console.log(count);
+        x = x - y;
+        return divide(x, y, count);
+    }
 
+    return count;
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
@@ -395,8 +412,23 @@ var capitalizeFirst = function (array, result = [], i = 0) {
 //   e: {e: {e: 2}, ee: 'car'}
 // };
 // nestedEvenSum(obj1); // 10
-var nestedEvenSum = function (obj) {};
-
+var nestedEvenSum = function (obj) {
+    
+};
+/*
+var count = 0;
+    for(var prop in obj){
+        if(prop === key){
+        count++;
+        // console.log(key, count);
+        }
+        if(typeof obj[prop] === 'object'){
+        // console.log(key, typeof(obj[prop]));// all cool here
+            count += countKeysInObj(obj[prop], key);
+        }
+    }
+    return count;
+*/
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function (arrays) {
