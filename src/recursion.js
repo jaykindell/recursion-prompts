@@ -417,11 +417,10 @@ var nestedEvenSum = function (obj) {
             let num = obj[key];
             if(num % 2 === 0){    
             sum += num;
-            console.log('sum is ' + sum);
             }
         }
         if (typeof obj[key] === 'object'){
-          sum +=  nestedEvenSum(obj[key]);
+            sum +=  nestedEvenSum(obj[key]);
         }
     }
     //console.log(sum);
@@ -430,28 +429,38 @@ var nestedEvenSum = function (obj) {
 
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
-var flatten = function (arrays) {
-    let falt = [];
-    for (var i = 0; i < arrays; i ++){
+var flatten = function (array, flat = []) {
+    for (var i = 0; i < array.length; i ++){
         if (Array.isArray(array[i])){
-            flatten(array[i]);
+            flatten(array[i], flat);
         } 
+        
         else{
-            falt.concat(array[i]);
+            flat.push(array[i]);
+            //console.log(flat);
         }
     }
-
-    return falt;
+    return flat;
 };
+
+/*for (var i = 0; i < array.length; i++) {
+        if (typeof array[i] === 'number') {
+            sum += array[i];
+        }
+        if (Array.isArray(array[i])) {
+            sum += arraySum(array[i]);
+        }
+    }
+    return sum; */
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTallyR = function (str, obj = {}, i = 0) {
+var letterTally = function (str, obj = {}, i = 0) {
     if (i === str.length) {
         return obj;
     }
     obj[str[i]] ? obj[str[i]] += 1 : obj[str[i]] = 1;
-    return letterTallyR(str, obj, ++i);
+    return letterTally(str, obj, ++i);
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
