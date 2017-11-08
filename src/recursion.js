@@ -443,16 +443,6 @@ var flatten = function (array, flat = []) {
     return flat;
 };
 
-/*for (var i = 0; i < array.length; i++) {
-        if (typeof array[i] === 'number') {
-            sum += array[i];
-        }
-        if (Array.isArray(array[i])) {
-            sum += arraySum(array[i]);
-        }
-    }
-    return sum; */
-
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function (str, obj = {}, i = 0) {
@@ -483,7 +473,16 @@ var compress = function (list, result = [], i = 0) {
 // 32. Augument every element in a list with a new value where each element is an array
 // itself.
 // Example: augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
-var augmentElements = function (array, aug) {};
+var augmentElements = function (array, aug, i = 0) {
+    if (i === array.length){
+        return array;
+    }
+    if(Array.isArray(array[i])){
+        array[i].push(aug);
+    }
+
+    return augmentElements(array, aug, ++i);
+};
 
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
@@ -503,7 +502,25 @@ var minimizeZeroes = function (array, i = 0) {
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function (array) {};
+var alternateSign = function (array, i = 0) {
+    if(i === array.length){
+        return array;
+    }
+    if(i === 0){
+        array[i] = Math.abs(array[i]);
+        //console.log('hit');
+    }
+    if(i > 0){
+        if(array[i - 1] > 0 && array[i] > 0){
+            array[i] = array[i] * -1;
+           // console.log(array[i]);
+        }
+        if(array[i - 1] < 0 && array[i] < 0){
+            array[i] = array[i] * -1;
+        }
+    }
+    return alternateSign(array, ++i);
+};
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
