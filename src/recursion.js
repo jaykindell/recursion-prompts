@@ -541,15 +541,76 @@ var numToText = function (str, i = 0) {
     // *** EXTRA CREDIT ***
 
 // 36. Return the number of times a tag occurs in the DOM.
-var tagCount = function (tag, node) {};
+var tagCount = function (tag, node) {
+    //let theDocument = document.body;
+    let count = 0;
+    const travel = function (node, funct) {
+        funct(node);
+        node = node.firstChild;
+        while (node) {
+            travel(node, funct)
+            node = node.nextSibling;
+        }
+    };
+        travel(document, function(node){
+            if(node.tagName && node.tagName === tag.toUpperCase()){
+            count++;
+            }
+        });
+    return count;
+};
+
 
 // 37. Write a function for binary search.
 // Sample array:  [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 // console.log(binarySearch(5)) will return '5'
 
-var binarySearch = function (array, target, min, max) {};
+var binarySearch = function (array, target, min = 0, max = array.length - 1) {
+    let guess = Math.floor((min + max) / 2);
+    if(target === array[guess]){
+        return guess;
+    }
+    if(max < min){
+        return null;
+    }
+    if(target > array[guess]){
+        return binarySearch(array, target, min = guess + 1, max);
+    }
+    if(target < array[guess]){
+        return binarySearch(array, target, min, max = guess - 1);
+    }
+
+};
 
 // 38. Write a merge sort function.
 // Sample array:  [34,7,23,32,5,62]
 // Sample output: [5,7,23,32,34,62]
-var mergeSort = function (array) {};
+var mergeSort = function (arr) {
+if (arr.length < 2) {
+    return arr
+}
+
+let middle = Math.floor(arr.length / 2)
+let left = arr.slice(0, middle)
+let right = arr.slice(middle)
+
+return merge(mergeSort(left), mergeSort(right))
+}
+
+function merge(left, right) {
+    let result = []
+    let indexL = 0
+    let indexR = 0
+
+    while (indexL < left.length && indexR < right.length) {
+        if (left[indexL] < right[indexR]) {
+            result.push(left[indexL])
+            indexL++
+        } else {
+            result.push(right[indexR])
+            indexR++
+        }
+    }
+
+    return result.concat(left.slice(indexL)).concat(right.slice(indexR))
+};
