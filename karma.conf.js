@@ -19,7 +19,7 @@ module.exports = function (config) {
             { pattern: 'lib/sinon.js', included: false, served: true },
             { pattern: 'SpecRunner.html', included: true, served: true },
             { pattern: 'src/recursion.js', included: false, served: true },
-            { pattern: 'spec/part1`.js', included: false, served: true },
+            { pattern: 'spec/part1.js', included: false, served: true },
         ],
         reporters: ['progress'],
         port: 9876,
