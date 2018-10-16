@@ -9,12 +9,17 @@ module.exports = function (config) {
     config.set({
         frameworks: ['chai', 'mocha', 'sinon-chai', 'sinon'],
         files: [
+            { pattern: 'lib/css/mocha.css', included: false, served: true },
+            { pattern: 'lib/mocha.js', included: false, served: true },
             { pattern: 'lib/chai.js', included: false, served: true },
             { pattern: 'lib/sinon-chai.js', included: false, served: true },
+            { pattern: 'lib/cardboard.js', included: false, served: true },
+            { pattern: 'lib/testSupport.js', included: false, served: true },
+            { pattern: 'lib/jquery.js', included: false, served: true },
             { pattern: 'lib/sinon.js', included: false, served: true },
-            { pattern: 'SpecRunner.html', included: true, served: true },
             { pattern: 'src/recursion.js', included: false, served: true },
             { pattern: 'spec/part1`.js', included: false, served: true },
+            { pattern: 'SpecRunner.html', included: true, served: true },
         ],
         reporters: ['progress'],
         port: 9876,
